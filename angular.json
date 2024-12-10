@@ -1,0 +1,125 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "VacancyManagementFront": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/vacancy-management-front",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "polyfills": [
+              "zone.js"
+            ],
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "src/assets/AdminPages/dist/css/adminlte.min.css",
+              "src/assets/AdminPages/plugins/fontawesome-free/css/all.min.css",
+              "src/assets/AdminPages/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css",
+              "src/assets/AdminPages/plugins/icheck-bootstrap/icheck-bootstrap.min.css",
+              "src/assets/AdminPages/plugins/jqvmap/jqvmap.min.css",
+              "src/assets/AdminPages/plugins/overlayScrollbars/css/OverlayScrollbars.min.css",
+              "src/assets/AdminPages/plugins/daterangepicker/daterangepicker.css",
+              "src/assets/AdminPages/plugins/summernote/summernote-bs4.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/AdminPages/plugins/jquery/jquery.min.js",
+              "src/assets/AdminPages/plugins/jquery-ui/jquery-ui.min.js",
+              "src/assets/AdminPages/plugins/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/AdminPages/plugins/chart.js/Chart.min.js",
+              "src/assets/AdminPages/plugins/jquery-knob/jquery.knob.min.js",
+              "src/assets/AdminPages/plugins/daterangepicker/daterangepicker.js",
+              "src/assets/AdminPages/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js",
+              "src/assets/AdminPages/plugins/summernote/summernote-bs4.min.js",
+              "src/assets/AdminPages/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js",
+              "src/assets/AdminPages/dist/js/adminlte.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "4kB",
+                  "maximumError": "8kB"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "VacancyManagementFront:build:production"
+            },
+            "development": {
+              "buildTarget": "VacancyManagementFront:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
+            "tsConfig": "tsconfig.spec.json",
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "src/assets",
+                "output": "/assets"
+              }
+            ],
+            "styles": [
+              "src/assets/AdminPages/dist/css/adminlte.min.css",
+              "src/assets/AdminPages/plugins/fontawesome-free/css/all.min.css",
+              "src/styles.css"
+            ],
+            "scripts": [
+              "src/assets/AdminPages/plugins/jquery/jquery.min.js",
+              "src/assets/AdminPages/plugins/bootstrap/js/bootstrap.bundle.min.js"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

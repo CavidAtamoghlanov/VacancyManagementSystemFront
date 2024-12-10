@@ -1,0 +1,59 @@
+<div class="card">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h3 class="card-title">Vacancies</h3>
+    <button class="btn btn-success btn-sm" [routerLink]="['/admin/add']">Add New Vacancy</button>
+  </div>
+  
+  
+  <div class="card-body">
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+      {{ errorMessage }}
+    </div>
+
+    <!-- Vacancies Table -->
+    <table id="vacanciesTable" class="table table-bordered table-hover" *ngIf="vacancies.length > 0; else noData">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Title</th>
+          <th>Description</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Category</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vacancy of vacancies; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ vacancy.title }}</td>
+          <td>{{ vacancy.description }}</td>
+          <td>{{ vacancy.startDate | date: 'short' }}</td>
+          <td>{{ vacancy.endDate | date: 'short' }}</td>
+          <td>{{ vacancy.categoryName }}</td>
+          <td>
+            <span [ngClass]="vacancy.isActive ? 'badge bg-success' : 'badge bg-danger'">
+              {{ vacancy.isActive ? 'Active' : 'Inactive' }}
+            </span>
+          </td>
+          <td>
+            <button class="btn btn-primary btn-sm" [routerLink]="['/admin/edit', vacancy.id]">Edit</button>
+            <button class="btn btn-danger btn-sm m-2" (click)="onDelete(vacancy.id)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- No Data Template -->
+    <ng-template #noData>
+      <div class="text-end">
+        <p class="text-muted text-end">No vacancies available.</p>
+        <button class="btn btn-success btn-sm" [routerLink]="['/admin/add']">Add First Vacancy</button>
+      </div>
+    </ng-template>      
+  </div>
+</div>

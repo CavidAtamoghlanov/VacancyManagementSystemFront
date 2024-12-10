@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h3>Vakansiyanı Redaktə Et</h3>
+  <form [formGroup]="vacancyForm" (ngSubmit)="onUpdate()">
+    <!-- ID (Hidden Field) -->
+    <input type="hidden" formControlName="id" />
+
+    <!-- Title -->
+    <div class="mb-3">
+      <label for="title" class="form-label">Başlıq</label>
+      <input id="title" type="text" class="form-control" formControlName="title" />
+    </div>
+
+    <!-- Description -->
+    <div class="mb-3">
+      <label for="description" class="form-label">Təsvir</label>
+      <textarea id="description" class="form-control" formControlName="description"></textarea>
+    </div>
+
+    <!-- Start Date -->
+    <div class="mb-3">
+      <label for="startDate" class="form-label">Başlama Tarixi</label>
+      <input id="startDate" value="startDate" type="date" class="form-control" formControlName="startDate" />
+    </div>
+
+    <!-- End Date -->
+    <div class="mb-3">
+      <label for="endDate" class="form-label">Bitmə Tarixi</label>
+      <input id="endDate" value="endDate" type="date" class="form-control" formControlName="endDate" />
+    </div>
+
+    <!-- Active -->
+    <div class="form-check mb-3">
+      <input id="isActive" type="checkbox" class="form-check-input" formControlName="isActive" />
+      <label for="isActive" class="form-check-label">Aktivdir</label>
+    </div>
+
+    <button type="submit" class="btn btn-success">Yenilə</button>
+  </form>
+</div>
