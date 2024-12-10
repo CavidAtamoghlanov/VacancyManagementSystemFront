@@ -35,7 +35,7 @@ export class JobService {
 
     getAllActiveVacancies(): Observable<Vacancy[]> {
         return this.httpclientService
-            .get({ controller: 'Vacancy', action: 'GetVacancies' })
+            .get({ controller: 'Vacancy', action: 'GetActiveVacancies' })
             .pipe(
                 map((response: any) => {
                     if (response.statusCode === 200) {
